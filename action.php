@@ -8,6 +8,7 @@ $servername = "localhost";
 $dbusername = "admin";
 $dbpassword = "admin";
 $dbname = "test";
+$dbsubname = "myguests2";
 
 $name = $_POST['name'];
 $mail = $_POST['mail'];
@@ -34,7 +35,10 @@ if (empty($_POST['g-recaptcha-response'])) {
         echo "</p>" . "captcha succeed" . "</p>";
 
         if (
-            preg_match('/[a-z]{1,12}/im', $name) 
+            preg_match('/[a-z]{1,12}/i', $name) AND 
+            preg_match('/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i', $mail) AND 
+            preg_match('/((http|https):\/\/)(www.)?[a-zA-Z0-9@:%._\\+~#?&\/\/=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&\/\/=]*)/i', $Homepage) AND 
+            preg_match('/[a-z]{1,300}/i', $Text)
         ) {
             
             $conn = mysqli_connect($servername, $dbusername, $dbpassword, $dbname);
@@ -43,7 +47,7 @@ if (empty($_POST['g-recaptcha-response'])) {
                 die("Connection failed: " . mysqli_connect_error());
             }
 
-            $sql = "INSERT INTO `myguests2`(`Name`, `mail`, `Homepage`, `Text`) VALUES ('$name','$mail','$Homepage','$Text')";
+            $sql = "INSERT INTO `$dbsubname`(`Name`, `mail`, `Homepage`, `Text`) VALUES ('$name','$mail','$Homepage','$Text')";
 
             if (mysqli_query($conn, $sql)) {
                 echo "</p>" . "New record created successfully" . "</p>";
