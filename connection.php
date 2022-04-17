@@ -63,7 +63,7 @@ class Connection
     public function InsertIntodb($name, $mail, $Homepage, $Text)
     {
         if (!$this->isCaptchaSucced == true) {
-            echo 'captcha not succed';
+            // echo 'captcha not succed';
         } else {
             if (!(preg_match('/[a-z]{1,12}/i', $name) and
                 preg_match('/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i', $mail) and
