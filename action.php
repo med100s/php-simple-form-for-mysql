@@ -1,6 +1,6 @@
 <?php
 
-require_once('./connection.php');
+require_once('./classes/inserter.php');
 
 $servername = "localhost";
 $dbusername = "admin";
@@ -14,11 +14,11 @@ $Homepage = $_POST['Homepage'];
 $Text = $_POST['Text'];
 
 
-$list = new Connection($servername, $dbusername, $dbpassword, $dbname, $dbsubname);
-$list->Checkcaptcha();
-$list->Connect();
-$list->InsertIntodb($name, $mail, $Homepage, $Text);
-$list->CloseConection();
+$dbInserter = new dbInserter($servername, $dbusername, $dbpassword, $dbname, $dbsubname); 
+// $dbInserter->Checkcaptcha();
+$dbInserter->Connect();
+$dbInserter->InsertIntodb($name, $mail, $Homepage, $Text);
+$dbInserter->CloseConection();
 ?>
 
 

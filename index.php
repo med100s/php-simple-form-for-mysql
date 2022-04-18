@@ -1,6 +1,6 @@
 <?php
 
-require_once('./form.php');
+require_once('./classes/form.php');
 
 
 $servername = "localhost";
@@ -10,12 +10,12 @@ $dbname = "test";
 $dbsubname = "myguests2";
 
 
-$list = new Form($servername, $dbusername, $dbpassword, $dbname, $dbsubname, 10, 'Name');
-// $list->AddForm();
-$list->AddFormWithCaptcha();
-$list->Connect();
-$list->LoadResultsFromdb();
-$list->AddLoadPagesButtons();
-$list->AddSortingButtons();
-$list->CloseConection(); 
+$Form = new Form($servername, $dbusername, $dbpassword, $dbname, $dbsubname, 10, 'Name');
+// $Form->AddForm();
+$Form->AddFormWithCaptcha();
+$Form->Connect();
+$Form->LoadResultsFromdb();
+$Form->AddLoadPagesButtons();
+$Form->AddSortingButtons();
+$Form->CloseConection(); 
 ?>
